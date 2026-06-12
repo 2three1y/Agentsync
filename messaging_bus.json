@@ -1,0 +1,55 @@
+{
+  "description": "Configuration and Event Schema for AgentSync Messaging Layer",
+  "eventSchema": {
+    "type": "object",
+    "required": [
+      "timestamp",
+      "senderId",
+      "type",
+      "payload"
+    ],
+    "properties": {
+      "timestamp": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "senderId": {
+        "type": "string"
+      },
+      "type": {
+        "enum": [
+          "USER_MESSAGE",
+          "AGENT_MESSAGE",
+          "CONTEXT_UPDATE",
+          "NOTIFICATION"
+        ]
+      },
+      "payload": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "contextUpdate": {
+            "type": "object",
+            "properties": {
+              "agentId": {
+                "type": "string"
+              },
+              "updateType": {
+                "type": "string"
+              },
+              "dataSnippet": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "busPolicy": {
+    "broadcastContextUpdates": true,
+    "allowDirectUserMessaging": true
+  }
+}
