@@ -1,0 +1,14 @@
+{
+  "governance": {
+    "signature_validation": {
+      "required": true,
+      "method": "NSEC-based",
+      "minimum_signatures": 1
+    },
+    "workspace_rules": {
+      "allow_external_connectors": true,
+      "enforce_encryption_at_rest": true,
+      "require_mfa_for_vault_access": true
+    }
+  }
+}
