@@ -6,6 +6,28 @@ class MessagingBus {
   constructor() {
     this.subscribers = new Map();
     this.history = [];
+    this.config = {
+      context_mode: 'standalone' // Default mode: local memory only
+    };
+  }
+
+  /**
+   * Update the internal configuration.
+   * @param {string} key 
+   * @param {any} value 
+   */
+  setConfig(key, value) {
+    this.config[key] = value;
+    this.publish('CONFIG_UPDATE', { key, value });
+  }
+
+  /**
+   * Retrieve a configuration value.
+   * @param {string} key 
+   * @returns {any}
+   */
+  getConfig(key) {
+    return this.config[key];
   }
 
   /**
